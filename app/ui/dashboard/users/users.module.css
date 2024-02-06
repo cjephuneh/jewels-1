@@ -13,7 +13,7 @@
 
 .addButton{
   padding: 10px;
-  background-color: #5d57c9;
+  background-color: rgb(55, 206, 161);
   color: var(--text);
   border: none;
   border-radius: 5px;
@@ -47,19 +47,25 @@
 .button{
   padding: 5px 10px;
   border-radius: 5px;
-  color: var(--text);
+  color: #fff;
   border: none;
   cursor: pointer;
 }
 
 .view{
-  background-color: teal;
+  background-color: rgb(55, 206, 173);
 }
 
 .delete{
-  background-color: crimson;
+  background-color: rgb(220, 20, 103);
 }
 
 .table td{
   font-size: 14px;
+}
+
+.totalCount {
+  margin-bottom: 20px;
+  font-size: 16px;
+  font-weight: bold;
 }

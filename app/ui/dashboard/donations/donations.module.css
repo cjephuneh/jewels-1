@@ -47,7 +47,7 @@
 .button{
   padding: 5px 10px;
   border-radius: 5px;
-  color: var(--text);
+  color: #fff;
   border: none;
   cursor: pointer;
 }
@@ -57,7 +57,7 @@
 }
 
 .delete{
-  background-color: crimson;
+  background-color: rgb(220, 20, 103);
 }
 
 .table td{
@@ -76,7 +76,7 @@
 }
 
 .school{
-  background-color: #afd6ee75;
+  background-color: rgb(55, 206, 173);
 }
 
 .cancelled{

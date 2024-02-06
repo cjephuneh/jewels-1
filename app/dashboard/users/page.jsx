@@ -19,6 +19,7 @@ const UsersPage = async ({ searchParams }) => {
           <button className={styles.addButton}>Add New</button>
         </Link>
       </div>
+
       <table className={styles.table}>
         <thead>
           <tr>
@@ -57,7 +58,7 @@ const UsersPage = async ({ searchParams }) => {
                     </button>
                   </Link>
                   <form action={deleteUser}>
-                    <input type="hidden" name="id" value={(user.id)} />
+                    <input type="hidden" name="id" value={user.id} />
                     <button className={`${styles.button} ${styles.delete}`}>
                       Delete
                     </button>
@@ -68,6 +69,7 @@ const UsersPage = async ({ searchParams }) => {
           ))}
         </tbody>
       </table>
+      
       <Pagination count={count} />
     </div>
   );

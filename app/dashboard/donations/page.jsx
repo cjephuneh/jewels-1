@@ -4,7 +4,7 @@ import styles from "app/ui/dashboard/donations/donations.module.css"; // Update 
 import Search from "app/ui/dashboard/search/search";
 import Pagination from "app/ui/dashboard/pagination/pagination";
 import { fetchDonations } from "app/lib/data"; // Update the import path
-import { deleteDonation } from "app/lib/actions"; // Update the import path
+
 
 const DonationsPage = async ({ searchParams }) => {
   const q = searchParams?.q || "";
@@ -15,6 +15,9 @@ const DonationsPage = async ({ searchParams }) => {
     <div className={styles.container}>
       <div className={styles.top}>
         <Search placeholder="Search for a donor..." />
+        <Link href="">
+            <button className={styles.addButton}>Export</button>
+          </Link>
       </div>
       <table className={styles.table}>
         <thead>
@@ -50,21 +53,7 @@ const DonationsPage = async ({ searchParams }) => {
               <td>{donation.Amount}</td>
               <td>{donation.Campaign}</td>                           
               <td>{donation.Date}</td>
-              <td>
-                <div className={styles.buttons}>
-                  <Link href={`/dashboard/donations/${donation._id}`}>{/* Update the path */}
-                    <button className={`${styles.button} ${styles.view}`}>
-                      View
-                    </button>
-                  </Link>
-                  <form action={deleteDonation}>
-                    <input type="hidden" name="id" value={donation._id} />{/* Update variable name */}
-                    <button className={`${styles.button} ${styles.delete}`}>
-                      Delete
-                    </button>
-                  </form>
-                </div>
-              </td>
+              
             </tr>
           ))}
         </tbody>

@@ -17,7 +17,7 @@ const ProductsPage = async ({ searchParams }) => {
     return (
       <div className={styles.container}>
         <div className={styles.top}>
-          <Search placeholder="Search for a product..." />
+          <Search placeholder="Search for a contact..." />
           <Link href="/dashboard/products/add">
             <button className={styles.addButton}>Add New</button>
           </Link>
@@ -28,7 +28,7 @@ const ProductsPage = async ({ searchParams }) => {
               <td>Name</td>
               <td>Email</td>
               <td>City</td>
-              <td>Account Number</td>
+              <td>Street</td>
             </tr>
           </thead>
           <tbody>
@@ -37,18 +37,18 @@ const ProductsPage = async ({ searchParams }) => {
                 <td>
                   <div className={styles.product}>
                     <Image
-                      src={product.img || "/noproduct.jpg"}
+                      src={product.img || "/noavatar.png"}
                       alt=""
                       width={40}
                       height={40}
                       className={styles.productImage}
                     />
-                    {product.Name}
+                    {product.name}
                   </div>
                 </td>
-                <td>{product.email}</td>
-                <td>{product.city}</td>
-                <td>{product.account}</td>
+                <td>{product.primaryemailaddress}</td>
+                <td>{product.primarycity}</td>
+                <td>{product.primarystreet}</td>
                 <td>
                   <div className={styles.buttons}>
                     <Link href={`/dashboard/products/${product._id}`}>

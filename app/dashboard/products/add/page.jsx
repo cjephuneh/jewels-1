@@ -5,12 +5,12 @@ const AddProductPage = () => {
   return (
     <div className={styles.container}>
       <form action={addProduct} className={styles.form}>
-        <input type="text" placeholder="Name" name="Name" required />
+        <input type="text" placeholder="name" name="name" required />
         
-        <input type="text" placeholder="Email" name="Primary Email" required />
-        <input type="text" placeholder="City" name="Primary City" required />
-        <input type="text" placeholder="Street" name="Primary Street" />
-        <input type="number" placeholder="ZIP code" name="Primary ZIP code" />
+        <input type="text" placeholder="primaryemailaddress" name="primaryemailaddress" required />
+        <input type="text" placeholder="primarycity" name="primarycity" required />
+        <input type="text" placeholder="primarystreet" name="primarystreet" />
+        <input type="number" placeholder="primaryzipcode" name="primaryzipcode" />
 
         <button type="submit">Submit</button>
       </form>

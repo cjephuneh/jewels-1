@@ -1,20 +1,25 @@
-"use client"
-
-import { MdSupervisedUserCircle } from "react-icons/md";
+// Import React Icons for visual representation
+import { MdSupervisedUserCircle, MdAttachMoney, MdContacts } from "react-icons/md";
 import styles from "./card.module.css";
 
-const Card = ({ item }) => {
+const Card = ({ title, number, detail, icon }) => {
+  // Determine which icon to display based on the icon prop
+  const IconComponent = () => {
+    // let iconClass = "icon"; 
+    if (icon === "users") return <MdSupervisedUserCircle size={24} />;
+    if (icon === "donations") return <MdAttachMoney size={24} />;
+    if (icon === "contacts") return <MdContacts size={24} />;
+    return null; // Default case if no icon matches
+  };
+
   return (
     <div className={styles.container}>
-      <MdSupervisedUserCircle size={24} />
+      <IconComponent />
       <div className={styles.texts}>
-        <span className={styles.title}>Total Users</span>
-        <span className={styles.number}>5</span>
+        <span className={styles.title}>{title}</span>
+        <span className={styles.number}>{number}</span>
         <span className={styles.detail}>
-          <span className="">
-            4%
-          </span>{" "}
-          than previous week
+          <span className="detailPercentage">{detail.percentage}</span> {detail.text}
         </span>
       </div>
     </div>

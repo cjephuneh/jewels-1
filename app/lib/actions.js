@@ -35,6 +35,8 @@ export const addUser = async (formData) => {
 
   revalidatePath("/dashboard/users");
   redirect("/dashboard/users");
+
+  
 };
 
 export const updateUser = async (formData) => {
@@ -68,20 +70,20 @@ export const updateUser = async (formData) => {
   revalidatePath("/dashboard/users");
   redirect("/dashboard/users");
 };
+
 export const addProduct = async (formData) => {
-  const { id,  Name,  PrimaryEmailAddress,  PrimaryStreet,  PrimaryCity,  AccountNumber,} =
+  const { name,  primaryemailaddress,  primarystreet,  primarycity,  accountnumber,} =
     Object.fromEntries(formData);
 
   try {
     connectToDB();
 
     const newProduct = new Product({
-      Name,
-      PrimaryEmailAddress,
-      PrimaryStreet,
-      PrimaryCity,
-      PrimaaryState,
-      AccountNumber,
+      name,
+      primaryemailaddress,
+      primarystreet,
+      primarycity,
+      accountnumber,
     });
 
     await newProduct.save();
@@ -95,19 +97,18 @@ export const addProduct = async (formData) => {
 };
 
 export const updateProduct = async (formData) => {
-  const { id,  Name,  PrimaryEmailAddress,  PrimaryStreet,  PrimaryCity,  AccountNumber,} =
+  const { id,  name,  primaryemailaddress,  primarystreet,  primarycity,  accountnumber,} =
     Object.fromEntries(formData);
 
   try {
     connectToDB();
 
     const updateFields = {
-      Name,
-      PrimaryEmailAddress,
-      PrimaryStreet,
-      PrimaryCity,
-      PrimaaryState,
-      AccountNumber,
+      name,
+      primaryemailaddress,
+      primarystreet,
+      primarycity,
+      accountnumber,
     };
 
     Object.keys(updateFields).forEach(
@@ -152,4 +153,5 @@ export const deleteProduct = async (formData) => {
 
   revalidatePath("/dashboard/products");
 };
+
 

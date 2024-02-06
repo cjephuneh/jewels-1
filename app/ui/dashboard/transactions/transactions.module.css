@@ -7,7 +7,7 @@
 .title{
   margin-bottom: 20px;
   font-weight: 200;
-  color: var(--textSoft);
+  color: black;
 }
 
 .table{
@@ -41,7 +41,7 @@
 }
 
 .done{
-  background-color: #afd6ee75;
+  background-color: rgb(55, 206, 173);
 }
 
 .cancelled{

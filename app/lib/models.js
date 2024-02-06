@@ -41,34 +41,60 @@ const userSchema = new mongoose.Schema(
 
 const productSchema = new mongoose.Schema(
   {
-    Name: {
+    name: {
         type: String,
         required: true,
         unique: true,
       },
-      email: {
+      primaryemailaddress: {
         type: String, 
         unique: true,
       },
-      PrimaryStreet: {
+      primarystreet: {
         type: String,
       },
-      city: {
+      primarycity: {
         type: String,
       },
-      PrimaryState: {
+      primarystate: {
+        type: String,
+      },
+      donationnumber: {
+        type: Number,
+        min: 0,
+      },
+      donationamount: {
+        type: String,
+      },
+      lastdate: {
         type: String,
       },
       img: {
         type: String,
       },
-      account: {
+      accountnumber: {
+        type: Number,
+        unique: true,
+        min: 0, 
+      },
+      primaryzipcode	: {
         type: Number,
         min: 0, 
       },
-      PrimaryZIPCode: {
-        type: Number,
-        min: 0, 
+      firstdonationdate: {
+        type: String,
+      },
+      largestdonationdate: {
+        type: String,
+      },
+      firstdonation: {
+        type: String,
+      },
+      largestdonation: {
+        type: String,
+      },
+      latestdonation: {
+        type: String,
       },
     },
   { timestamps: true }
@@ -108,8 +134,45 @@ const donationSchema = new mongoose.Schema(
       },
     { timestamps: true }
   );
+
+  const latestSchema = new mongoose.Schema(
+    {
+      Name: {
+          type: String,
+          required: true,
+          unique: true,
+        },
+        Date: {
+          type: String, 
+          unique: true,
+        },
+        Amount: {
+          type: String,
+        },
+        Type: {
+          type: String,
+        },
+        Fund: {
+          type: String,
+        },
+        img: {
+          type: String,
+        },
+        account: {
+          type: Number,
+          min: 0, 
+        },
+        Campaign: {
+          type: String,
+        
+        },
+      },
+    { timestamps: true }
+  );
   
 export const User = mongoose.models.User || mongoose.model("User", userSchema);
 export const Product =
   mongoose.models.Product || mongoose.model("Product", productSchema);
 export const Donation = mongoose.models.Donation || mongoose.model("Donation", donationSchema);
+export const Latest = mongoose.models.Latest || mongoose.model("Latest", latestSchema);
+

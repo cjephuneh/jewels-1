@@ -1,4 +1,4 @@
-import { Product, User, Donation } from "./models";
+import { Product, User, Donation, Latest } from "./models";
 import { connectToDB } from "./utils";
 
 export const fetchUsers = async (q, page) => {
@@ -38,8 +38,8 @@ export const fetchProducts = async (q, page) => {
 
   try {
     connectToDB();
-    const count = await Product.find({ Name: { $regex: regex } }).count();
-    const products = await Product.find({ Name: { $regex: regex } })
+    const count = await Product.find({ name: { $regex: regex } }).count();
+    const products = await Product.find({ name: { $regex: regex } })
       .limit(ITEM_PER_PAGE)
       .skip(ITEM_PER_PAGE * (page - 1));
     return { count, products };
@@ -77,3 +77,22 @@ export const fetchDonations = async (q, page) => {
     throw new Error("Failed to fetch donations!");
   }
 };
+
+export const fetchLatest = async (q, page) => {
+  const regex = new RegExp(q, "i");
+
+  const ITEM_PER_PAGE = 5;
+
+  try {
+    connectToDB();
+    const count = await Latest.find({ Name: { $regex: regex } }).count();
+    const donations = await Latest.find({ Name: { $regex: regex } })
+      .limit(ITEM_PER_PAGE)
+      .skip(ITEM_PER_PAGE * (page - 1));
+    return { count, donations };
+  } catch (err) {
+    console.log(err);
+    throw new Error("Failed to fetch latest!");
+  }
+};
+

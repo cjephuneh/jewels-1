@@ -18,28 +18,45 @@ const SingleProductPage = async ({ params }) => {
       <form action={updateProduct} className={styles.form}>
           <input type="hidden" name="id" value={product.id} />
           <label>Name</label>
-          <input type="text" name="Name" placeholder={product.Name}/>
+          <input type="text" name="Name" placeholder={product.name} className={styles.input}/>
           <label>Email</label>
-          <input type="text" name="Primary Email" placeholder={product.email} />
-          <label>Street Address</label>
-          <input type="text" name="Primary Street" placeholder={product.street} />
-          <label>City</label>
+          <input type="text" name="Primary Email" placeholder={product.primaryemailaddress} className={styles.input}/>
+          <label>Number of Donations</label>
+          <input type="text" name="Number of Donations" placeholder={product.donationnumber} className={styles.input} />
+          <label>Total Amount Donated</label>
           <input
             type="text"
-            name="Primary City"
-            placeholder={product.city}
+            name="Donation Amount"
+            placeholder={`$${product.donationamount}`}
+            className={styles.input}
           />
-          <label>State</label>
+          <label>First Donation</label>
           <input
             type="text"
-            name="Primary State"
-            placeholder={product.state}
+            name="Last Donation Date"
+            placeholder={`$${product.firstdonation}     ${product.firstdonationdate}`}
+            className={styles.input}
           />
-          <label>ZIP code</label>
+          <label>Largest Donation</label>
+          <input
+            type="text"
+            name="Last Donation Date"
+            placeholder={`$${product.largestdonation}     ${product.largestdonationdate}`}
+            className={styles.input}
+          />
+          <label>Last Donation</label>
+          <input
+            type="text"
+            name="Last Donation Date"
+            placeholder={`$${product.latestdonation}     ${product.lastdate}`}
+            className={styles.input}
+          />
+          <label>Account Number</label>
           <input
             type="number"
-            name="Primary ZIP code"
-            placeholder={product.zip}
+            name="Account Number"
+            placeholder={product.accountnumber}
+            className={styles.input}
           />          
           <button>Update</button>
         </form>
