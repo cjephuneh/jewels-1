@@ -1,5 +1,5 @@
 import styles from "./sidebar.module.css";
-import MenuLink from "./menulink/menulink";
+import MenuLink from "./menuLink/menuLink";
 import Image from "next/image";
 import {
   MdDashboard,
@@ -59,7 +59,7 @@ const Sidebar = () => {
           height="50"
         />
         <div className={styles.userDetail}>
-          <span className={styles.username}>Eka Yisroel Fuchs</span>
+          <span className={styles.username}>Eric Koome</span>
           <span className={styles.userTitle}>Administrator</span>
         </div>
       </div>
