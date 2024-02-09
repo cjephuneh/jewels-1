@@ -160,6 +160,15 @@ export const authenticate = async (prevState, formData) => {
   const { username, password } = Object.fromEntries(formData);
 
   try {
+    connectToDB();
+
+    // Check if the user exists
+    const existingUser = await User.findOne({ username });
+    if (!existingUser) {
+      return "User does not exist";
+    }
+
+    // User exists, proceed with authentication
     await signIn("credentials", { username, password });
   } catch (err) {
     if (err.message.includes("CredentialsSignin")) {
