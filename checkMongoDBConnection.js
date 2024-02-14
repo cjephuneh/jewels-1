@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 async function checkConnection() {
   try {
     // MongoDB connection URI
-    const mongoURI = 'your-mongodb-connection-uri';
+    const mongoURI = 'mongodb+srv://erickomee:erickomee254@cluster0.axyzbpk.mongodb.net/dashboard?retryWrites=true&w=majority';
 
     // Connect to MongoDB
     await mongoose.connect(mongoURI, {

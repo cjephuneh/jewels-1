@@ -96,3 +96,37 @@ export const fetchLatest = async (q, page) => {
   }
 };
 
+export const fetchTotalUsers = async () => {
+  try {
+    connectToDB();
+    const count = await User.count();
+    return count;
+  } catch (err) {
+    console.error(err);
+    throw new Error("Failed to fetch total users!");
+  }
+};
+
+export const fetchTotalDonations = async () => {
+  try {
+    connectToDB();
+    const total = await Donation.aggregate([
+      { $group: { _id: null, totalAmount: { $sum: "$Amount" } } },
+    ]);
+    return total[0]?.totalAmount || 0;
+  } catch (err) {
+    console.error(err);
+    throw new Error("Failed to fetch total donations!");
+  }
+};
+
+export const fetchTotalConstituents = async () => {
+  try {
+    connectToDB();
+    const count = await User.count({ type: "constituent" }); // Adjust the query as needed
+    return count;
+  } catch (err) {
+    console.error(err);
+    throw new Error("Failed to fetch total constituents!");
+  }
+};

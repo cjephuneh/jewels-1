@@ -3,13 +3,18 @@ import mongoose from "mongoose";
 const connection = {};
 
 export const connectToDB = async () => {
-  
   try {
     if (connection.isConnected) return;
-    const db = await mongoose.connect(process.env.MONGO);
-    connection.isConnected = db.connections[0].readyState;
+
+    await mongoose.connect('mongodb+srv://erickomee:erickomee254@cluster0.axyzbpk.mongodb.net/dashboard?retryWrites=true&w=majority', {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      connectTimeoutMS: 30000, // Increase the timeout if necessary
+    });
+
+    connection.isConnected = true;
   } catch (error) {
-    console.log(error)
+    console.error(error);
     throw new Error(error);
   }
 };
