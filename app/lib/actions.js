@@ -4,9 +4,9 @@ import { revalidatePath } from "next/cache";
 import { Product, User } from "./models";
 import { connectToDB } from "./utils";
 import { redirect } from "next/navigation";
-import { signIn } from '../auth';
+// import { signIn } from '../auth';
 import bcrypt from "bcrypt";
-import { AuthError } from 'next-auth';
+// import { AuthError } from 'next-auth';
 
 
 export const addUser = async (formData) => {
@@ -156,39 +156,39 @@ export const deleteProduct = async (formData) => {
   revalidatePath("/dashboard/products");
 };
 
-// Create a new authentication function
-export const authenticate = async (prevState, formData) => {
-  const { username, password } = Object.fromEntries(formData);
+// // Create a new authentication function
+// export const authenticate = async (prevState, formData) => {
+//   const { username, password } = Object.fromEntries(formData);
 
-  try {
-    // Find the user in the database
-    const user = await User.findOne({ username });
+//   try {
+//     // Find the user in the database
+//     const user = await User.findOne({ username });
 
-    // Check if the user exists
-    if (!user) {
-      throw new Error("User not found");
-    }
+//     // Check if the user exists
+//     if (!user) {
+//       throw new Error("User not found");
+//     }
 
-    // Compare the provided password with the hashed password in the database
-    const passwordMatch = await bcrypt.compare(password, user.password);
+//     // Compare the provided password with the hashed password in the database
+//     const passwordMatch = await bcrypt.compare(password, user.password);
 
-    // If passwords match, sign in the user
-    if (passwordMatch) {
-      await signIn('credentials', { username, password });
-    } else {
-      // If passwords don't match, throw an error
-      throw new Error("Incorrect password");
-    }
-  } catch (err) {
-    console.error("Authentication Error:", err);
+//     // If passwords match, sign in the user
+//     if (passwordMatch) {
+//       await signIn('credentials', { username, password });
+//     } else {
+//       // If passwords don't match, throw an error
+//       throw new Error("Incorrect password");
+//     }
+//   } catch (err) {
+//     console.error("Authentication Error:", err);
 
-    // Customize error messages based on different scenarios
-    if (err.message.includes("User not found")) {
-      return "User not found";
-    } else if (err.message.includes("Incorrect password")) {
-      return "Incorrect password";
-    }
+//     // Customize error messages based on different scenarios
+//     if (err.message.includes("User not found")) {
+//       return "User not found";
+//     } else if (err.message.includes("Incorrect password")) {
+//       return "Incorrect password";
+//     }
 
-    throw err; // Rethrow the error for unhandled scenarios
-  }
-};
+//     throw err; // Rethrow the error for unhandled scenarios
+//   }
+// };

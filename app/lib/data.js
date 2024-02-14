@@ -120,10 +120,10 @@ export const fetchTotalDonations = async () => {
   }
 };
 
-export const fetchTotalConstituents = async () => {
+export const fetchTotalProducts = async () => {
   try {
     connectToDB();
-    const count = await User.count({ type: "constituent" }); // Adjust the query as needed
+    const count = await User.count({ type: "products" }); // Adjust the query as needed
     return count;
   } catch (err) {
     console.error(err);
