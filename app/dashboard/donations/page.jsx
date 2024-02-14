@@ -10,16 +10,21 @@ const DonationsPage = async ({ searchParams }) => {
   const page = searchParams?.page || 1;
   const { count, donations } = await fetchDonations(q, page); // Update the function name
 
-  // Sort donations by date in descending order (latest first)
-  donations.sort((a, b) => new Date(b.Date) - new Date(a.Date));
+  // Convert date strings to Date objects before sorting
+  donations.forEach((donation) => {
+    donation.DateObject = new Date(donation.Date);
+  });
 
-  return (
+  // Sort donations by date in descending order (latest first)
+  donations.sort((a, b) => b.DateObject - a.DateObject);
+
+   return (
     <div className={styles.container}>
       <div className={styles.top}>
         <Search placeholder="Search for a donor..." />
         <Link href="">
-            <button className={styles.addButton}>Export</button>
-          </Link>
+          <button className={styles.addButton}>Export</button>
+        </Link>
       </div>
       <table className={styles.table}>
         <thead>
@@ -32,30 +37,34 @@ const DonationsPage = async ({ searchParams }) => {
           </tr>
         </thead>
         <tbody>
-          {donations.map((donation) => ( 
-            <tr key={donation._id}> 
+          {donations.map((donation) => (
+            <tr key={donation._id}>
               <td>
-                <div className={styles.donation}> 
+                <div className={styles.donation}>
                   <Image
-                    src={donation.img || "/noavatar.png"} 
+                    src={donation.img || "/noavatar.png"}
                     alt=""
                     width={40}
                     height={40}
-                    className={styles.donationImage} 
+                    className={styles.donationImage}
                   />
                   {donation.Name}
                 </div>
               </td>
               <td>
-              <span className={`${styles.status} ${styles.school}`}>
-              {donation.Fund}
-              </span>
-            </td>
-            
+                <span className={`${styles.status} ${styles.school}`}>
+                  {donation.Fund}
+                </span>
+              </td>
               <td>{donation.Amount}</td>
-              <td>{donation.Campaign}</td>                           
-              <td>{donation.Date}</td>
-              
+              <td>{donation.Campaign}</td>
+              <td>
+                {donation.DateObject.toLocaleDateString('en-US', {
+                  month: '2-digit',
+                  day: '2-digit',
+                  year: 'numeric',
+                })}
+              </td>
             </tr>
           ))}
         </tbody>
@@ -65,4 +74,4 @@ const DonationsPage = async ({ searchParams }) => {
   );
 };
 
-export default DonationsPage; // Update component name
+export default DonationsPage;
