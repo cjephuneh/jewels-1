@@ -5,11 +5,13 @@ import Search from "app/ui/dashboard/search/search";
 import Pagination from "app/ui/dashboard/pagination/pagination";
 import { fetchDonations } from "app/lib/data"; // Update the import path
 
-
 const DonationsPage = async ({ searchParams }) => {
   const q = searchParams?.q || "";
   const page = searchParams?.page || 1;
   const { count, donations } = await fetchDonations(q, page); // Update the function name
+
+  // Sort donations by date in descending order (latest first)
+  donations.sort((a, b) => new Date(b.Date) - new Date(a.Date));
 
   return (
     <div className={styles.container}>
