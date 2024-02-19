@@ -5,7 +5,7 @@ import Card from "../ui/dashboard/card/card"; // Adjust path as necessary
 import Transactions from "../ui/dashboard/transactions/transactions"; // Adjust path as necessary
 import Chart from "../ui/dashboard/chart/chart"; // Adjust path as necessary
 import Rightbar from "../ui/dashboard/rightbar/rightbar"; // Adjust path as necessary
-import { fetchTotalUsers, fetchTotalDonations, fetchTotalProducts } from "app/lib/data"; // Update the import path
+import { fetchTotalDonations} from "app/lib/data"; // Update the import path
 
 
 const Dashboard = async () => {
